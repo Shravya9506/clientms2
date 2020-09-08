@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Clients{% endblock title %}
+
+{% block content %}
+<div class="d-flex flex-row"><a class="btn btn-info" type="button" href="{% url 'ownedcar_new' %}">Add a newly purchased car details</a><a type="button" class="btn btn-info ml-5" href="{% url 'comment_new' %}">Add a new comment</a></div>
+  {% for client in object_list %}
+    <div class="card">
+      <div class="card-header">
+        <span class="font-weight-bold">{{ client.name }}</span>
+        <span class="font-weight-bold">cell: {{ client.cell_phone }} | </span>
+        <span class="font-weight-bold">acct: {{ client.acct_number }} | </span>
+
+        <span class="font-muted">addr: {{ client.address }} | </span>
+        <span class="font-muted-">city: {{ client.city }} | </span>
+        <span class="font-muted">st: {{ client.state }} | </span>
+        <span class="font-muted">zip: {{ client.zipcode }} | </span>
+        <span class="font-muted">email: {{ client.email }} | </span>
+      </div>
+      <div class="card-body">
+        <p>{{ client.notes }}</p> <a href="{% url 'client_edit' client.pk %}">Edit</a> | <a href="{% url 'client_delete' client.pk %}">Delete</a>
+      </div>
+      {% if client.comments.count > 0 %}
+      <p>Comments</p>
+      {% endif %}
+      {% for comment in client.comments.all %}
+      <div class="card-footer">
+          <p>
+            <span class="font-weight-bold">{{ comment.author }} &middot;</span>
+            {{ comment }}
+          </p>
+      </div>
+      {% endfor %}
+      {% if client.owned_cars.count > 0 %}
+      <p>Cars owned</p>
+      {% endif %}
+      {% for ownedcar in client.owned_cars.all %}
+      <div class="card-footer">
+
+          <p>
+            <span class="font-weight-bold">{{ ownedcar.author }} &middot;</span> Purchased a {{ownedcar.manufacturer}} {{ ownedcar.car_model }}
+            <span> <a href="{% url 'ownedcar_edit' ownedcar.pk %}">Edit</a> | <a href="{% url 'ownedcar_delete' ownedcar.pk%}">Delete</a></span></br>
+          </p>
+      </div>
+      {% endfor %}
+    </div>
+    <br />
+  {% endfor %}
+{% endblock content %}

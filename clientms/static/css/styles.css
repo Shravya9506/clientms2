@@ -1,0 +1,39 @@
+.custom-form {
+    padding: 20px;
+    border : 2px solid;
+    border-radius: 15px;
+}
+
+h1{
+    text-align: center;
+    margin: 20px 0px;
+}
+
+.custom-form input,select {
+    height: 35px;
+    width: 200px;
+}
+
+.custom-form p label {
+    width: 15%;
+}
+
+.custom-form p span {
+    display: block;
+    margin-left: 15%;
+}
+.custom-form ul {
+    margin-left: 13%;
+}
+
+.buttons-container {
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.buttons-container button {
+    width: 150px;
+    margin: 10px 0;
+}
