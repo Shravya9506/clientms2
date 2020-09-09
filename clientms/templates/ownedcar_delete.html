@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Delete</h1>
-    <form action="" method="post">{% csrf_token %}
-      <p>Are you sure you want to delete "{{ client.name }}"?</p>
-      <button class="btn btn-danger ml-2" type="submit">Confirm</button>
+    <h1>Delete owned car</h1>
+    <form class="custom-form" action="" method="post">{% csrf_token %}
+      <p>Are you sure you want to delete the car details "{{ purchasedcar.carName }}" purchased by the client "{{ purchasedcar.client }}"?</p>
+        <div class="buttons-container">
+            <button class="btn btn-danger ml-2" type="submit">Confirm</button>
+        </div>
     </form>
 {% endblock content %}

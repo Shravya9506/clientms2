@@ -2,8 +2,7 @@
 
 {% block content %}
     <h1>New Client</h1>
-    <form class="custom-form" action="" method="post">
-        {% csrf_token %}
+    <form class="custom-form" action="" method="post">{% csrf_token %}
       {{ form.as_p }}
         <div class="buttons-container">
             <button class="btn btn-success ml-2" type="submit">Save</button>
