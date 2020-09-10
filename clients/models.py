@@ -44,7 +44,7 @@ class Comment(models.Model):
         return self.comment
 
     def get_absolute_url(self):
-        return reverse('Client_list')
+        return reverse('client_list')
 
 class OwnedCar(models.Model):
     client = models.ForeignKey(
@@ -67,6 +67,6 @@ class OwnedCar(models.Model):
         return self.car_model
 
     def get_absolute_ur(self):
-        return reverse('Client_list')
+        return reverse('client_list')
 
 

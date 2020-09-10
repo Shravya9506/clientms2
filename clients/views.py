@@ -65,7 +65,7 @@ class OwnedCarCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('client_list')
 
     def form_valid(self, form):
-        self.instance.author = self.request.user
+        form.instance.author = self.request.user
         return super().form_valid(form)
 
 
@@ -79,4 +79,5 @@ class OwnedCarUpdateView(LoginRequiredMixin, UpdateView):
     model = OwnedCar
     fields = ('client', 'manufacturer', 'car_model', 'date_of_purchase', 'date_of_last_service')
     template_name = 'ownedcar_edit.html'
+    success_url = reverse_lazy('client_list')
 

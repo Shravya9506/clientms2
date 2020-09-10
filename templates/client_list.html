@@ -3,7 +3,12 @@
 {% block title %}Clients{% endblock title %}
 
 {% block content %}
-<div class="d-flex flex-row"><a class="btn btn-info" type="button" href="{% url 'ownedcar_new' %}">Add a newly purchased car details</a><a type="button" class="btn btn-info ml-5" href="{% url 'comment_new' %}">Add a new comment</a></div>
+{% if object_list.count > 0 %}
+<div class="d-flex flex-row"><a class="btn btn-info" type="button" href="{% url 'ownedcar_new' %}">Add client owned cars</a><a type="button" class="btn btn-info ml-5" href="{% url 'comment_new' %}">Add a new comment</a></div>
+<p>Note : Below is the list of clients you have added.</p>
+{% else %}
+<p> You have not added any clients yet.</p>
+{% endif %}
   {% for client in object_list %}
     <div class="card">
       <div class="card-header">
@@ -20,24 +25,18 @@
       <div class="card-body">
         <p>{{ client.notes }}</p> <a href="{% url 'client_edit' client.pk %}">Edit</a> | <a href="{% url 'client_delete' client.pk %}">Delete</a>
       </div>
-      {% if client.comments.count > 0 %}
-      <p>Comments</p>
-      {% endif %}
       {% for comment in client.comments.all %}
       <div class="card-footer">
-          <p>
+          <p>Comment :
             <span class="font-weight-bold">{{ comment.author }} &middot;</span>
             {{ comment }}
           </p>
       </div>
       {% endfor %}
-      {% if client.owned_cars.count > 0 %}
-      <p>Cars owned</p>
-      {% endif %}
       {% for ownedcar in client.owned_cars.all %}
       <div class="card-footer">
 
-          <p>
+          <p>Owned Car:
             <span class="font-weight-bold">{{ ownedcar.author }} &middot;</span> Purchased a {{ownedcar.manufacturer}} {{ ownedcar.car_model }}
             <span> <a href="{% url 'ownedcar_edit' ownedcar.pk %}">Edit</a> | <a href="{% url 'ownedcar_delete' ownedcar.pk%}">Delete</a></span></br>
           </p>
