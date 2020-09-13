@@ -10,7 +10,7 @@ body{
 
 h1{
     text-align: center;
-    margin: 20px 0px;
+    margin: 20px 0;
 }
 
 .custom-form input,select {
